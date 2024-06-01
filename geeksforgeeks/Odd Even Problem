@@ -1,0 +1,57 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+
+class Solution {
+  public:
+    string oddEven(string s) {
+    int n = s.length();
+    int ce = 0, co = 0;
+    std::vector<int> v(26, 0);
+
+    // Count the frequency of each character in the string
+    for(int i = 0; i < n; ++i) {
+        v[s[i] - 'a'] += 1;
+    }
+
+    // Check the frequencies based on character positions
+    for(int i = 0; i < 26; ++i) {
+        if((i + 1) % 2 == 0 && v[i] % 2 == 0 && v[i] > 0) {
+            ce++;
+        }
+        if((i + 1) % 2 == 1 && v[i] % 2 == 1 && v[i] > 0) {
+            co++;
+        }
+    }
+
+    // Determine if the summation of ce and co is odd or even
+    if((co + ce) % 2 == 1) {
+        return "ODD";
+    }
+
+    return "EVEN";
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    scanf("%d ", &t);
+    while (t--) {
+
+        string s;
+        getline(cin, s);
+
+        Solution obj;
+        string res = obj.oddEven(s);
+
+        cout << res << "\n";
+    }
+}
+
+// } Driver Code Ends
